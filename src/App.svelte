@@ -8,44 +8,98 @@
   ];
 	let activeShrug = shrugs[0];
   let input;
-
-  onMount(() => {
-    console.log('input ref:', input)
-    input.select();
-    document.execCommand('copy');
-  });
+  let copied = false;
 
   const copyShrug = (shrug) => {
-    activeShrug = shrug
+    if (shrug) activeShrug = shrug;
+
     input.select();
     document.execCommand('copy');
-    console.log('Copied', shrug)
-  }
+    console.log('Copied', shrug);
+    copied = true
+  };
+
+  const handleKeydown = (event) => {
+    console.log('Key pressed', event)
+    if (event.code === 'Space') {
+      copyShrug();
+    }
+  };
 </script>
 
 <style>
-	body {
+	:global(body) {
     background-color: #223;
+    color: beige;
+    font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', Courier, monospace;;
+  }
+  main {
+    width: 95%;
+    max-width: 45rem;
+    margin: 2rem auto;
   }
   h1 {
 		color: cornflowerblue;
+    text-align: center;
+    margin-bottom: 2rem;
 	}
+  h2 {
+    text-align: center;
+  }
   input {
-    /*visibility: hidden;*/
+    opacity: 0;
+    pointer-events: none;
+  }
+  button {
+    background: none;
+    border: 2px dashed beige;
+    padding: .3rem 1rem;
+    color: beige;
+    cursor: pointer;
+    margin: 0;
+  }
+  button:hover {
+    border-style: solid;
+  }
+  fieldset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem 1rem;
   }
 </style>
 
-<h1><code>{ activeShrug }</code></h1>
+<svelte:window on:keydown={handleKeydown}/>
 
-<p>☝️ has been copied to your clipboard</p>
+<main>
+  <h1><code>{ shrugs[0] }</code></h1>
 
-<p>Here's some other shruggies:</p>
+  <p><strong>Here's the thing.</strong> Sometimes I'll need this ☝️ expressive set of characters
+  in a way that Slack's <code>/shrug</code> command doesn't allow me to.
+  For example, to prepend it to a sentence or use it in the middle of a text.
+  Maybe I'll use it somewhere other than Slack. Anywho, this website
+  was created so I'd always have a quick way to copy it or other similar shruggies.</p>
 
-{#each shrugs as shrug}
-<button on:click={() => copyShrug(shrug)}>
-  <code>{shrug}</code>
-</button>
-{/each}
+  {#if !copied}
+  <h2>Hit <code>Space</code> to copy the default shrug or click on another one</h2>
+  {:else}
+  <h2><code>{ activeShrug }</code></h2>
+
+  <p>☝️ has been copied to your clipboard</p>
+  {/if}
+
+  <p>Meet our shruggies!</p>
+
+  <fieldset>
+  {#each shrugs as shrug}
+    <button on:click={() => copyShrug(shrug)} type="button">
+      <code>{shrug}</code>
+    </button>
+  {/each}
+  </fieldset>
 
 
-<input type="text" bind:this={input} value={activeShrug}>
+  <input type="text" bind:this={input} value={activeShrug}>
+</main>
