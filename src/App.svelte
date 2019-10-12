@@ -52,14 +52,15 @@
   }
   button {
     background: none;
-    border: 2px dashed beige;
-    padding: .3rem 1rem;
+    border: none;
+    padding: .5rem 1rem;
     color: beige;
     cursor: pointer;
+    border-radius: 4px;
     margin: 0;
   }
   button:hover {
-    border-style: solid;
+    background-color: rgba(255, 255, 255, 0.2);
   }
   fieldset {
     display: flex;
@@ -68,6 +69,7 @@
     border: none;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 1.5rem 1rem;
+    border-radius: 4px;
   }
 </style>
 
@@ -85,9 +87,7 @@
   {#if !copied}
   <h2>Hit <code>Space</code> to copy the default shrug or click on another one</h2>
   {:else}
-  <h2><code>{ activeShrug }</code></h2>
-
-  <p>☝️ has been copied to your clipboard</p>
+  <h2>Copied: <code>{ activeShrug }</code></h2>
   {/if}
 
   <p>Meet our shruggies!</p>
