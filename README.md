@@ -1,7 +1,3 @@
-*Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
-
----
-
 # Shrug ¯\_(ツ)_/¯
 
 Sometimes you just can't help but 🤷‍♀️.
