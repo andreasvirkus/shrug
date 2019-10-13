@@ -77,6 +77,15 @@
     padding: 1.5rem 1rem;
     border-radius: 4px;
   }
+  .emoji {
+    font-family: initial;
+  }
+  .key {
+    font-size: 2.25rem;
+    padding: .2rem .5rem;
+    border-radius: .25rem;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 </style>
 
 <svelte:window on:keydown={handleKeydown}/>
@@ -84,14 +93,15 @@
 <main>
   <h1><code>{ shrugs[0] }</code></h1>
 
-  <p><strong>Here's the thing.</strong> Sometimes I'll need this ☝️ expressive set of characters
+  <p><strong>Here's the thing.</strong> Sometimes I'll need this
+    <span class="emoji">☝️</span> expressive set of characters
   in a way that Slack's <code>/shrug</code> command doesn't allow me to.
   For example, to prepend it to a sentence or use it in the middle of a text.
   Maybe I'll use it somewhere other than Slack. Anywho, this website
   was created so I'd always have a quick way to copy it or other similar shruggies.</p>
 
   {#if !copied}
-  <h2>Hit <code>Space</code> to copy the default shrug or click on another one</h2>
+  <h2>hit <code class="key">Space</code> to copy the default shrug or click on another one</h2>
   {:else}
   <h2>Copied: <code>{ activeShrug }</code></h2>
   {/if}
