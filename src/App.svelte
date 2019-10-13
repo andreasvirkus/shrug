@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { tick } from 'svelte';
 
   const shrugs = [
     `¯\\_(ツ)_/¯`,
@@ -10,12 +10,15 @@
   let input;
   let copied = false;
 
-  const copyShrug = (shrug) => {
+  const copyShrug = async (shrug) => {
+    console.log('shrug to copy:', shrug || activeShrug)
     if (shrug) activeShrug = shrug;
+    console.log({ activeShrug })
 
+    await tick();
     input.select();
     document.execCommand('copy');
-    console.log('Copied', shrug);
+    console.log('Copied', activeShrug);
     copied = true
   };
 
@@ -37,6 +40,9 @@
     width: 95%;
     max-width: 45rem;
     margin: 2rem auto;
+  }
+  main > * {
+    margin-bottom: 3rem;
   }
   h1 {
 		color: cornflowerblue;
@@ -67,7 +73,7 @@
     justify-content: space-between;
     align-items: center;
     border: none;
-    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid;
     padding: 1.5rem 1rem;
     border-radius: 4px;
   }
@@ -90,14 +96,14 @@
   <h2>Copied: <code>{ activeShrug }</code></h2>
   {/if}
 
-  <p>Meet our shruggies!</p>
 
   <fieldset>
-  {#each shrugs as shrug}
+    <legend>Meet our shruggies!</legend>
+    {#each shrugs as shrug}
     <button on:click={() => copyShrug(shrug)} type="button">
       <code>{shrug}</code>
     </button>
-  {/each}
+    {/each}
   </fieldset>
 
 
