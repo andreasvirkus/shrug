@@ -34,7 +34,7 @@
 	:global(body) {
     background-color: #223;
     color: beige;
-    font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', Courier, monospace;;
+    font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', Courier, monospace;
   }
   main {
     width: 95%;

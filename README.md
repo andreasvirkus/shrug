@@ -1,4 +1,7 @@
-# Shrug ¯\_(ツ)_/¯
+# Shrug ¯\\_(ツ)_/¯
+
+i got bored and did something stupid :v\
+https://shrug.andreasvirkus.me
 
 Sometimes you just can't help but 🤷‍♀️.
 
